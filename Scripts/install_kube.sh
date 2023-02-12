@@ -13,6 +13,7 @@ EOF
 
 # Disable Swap
 swapoff -a 
+cp /etc/fstab /etc/fstab-`date +%F`
 sed -i -e '/swap/d' /etc/fstab 
 
 # Configure System for Kubernetes
@@ -31,6 +32,7 @@ net.ipv4.ip_forward                 = 1
 net.bridge.bridge-nf-call-ip6tables = 1
 EOF
 sudo sysctl --system
+echo "Note: reviewing settings - all should equal 1"
 sysctl net.bridge.bridge-nf-call-iptables net.bridge.bridge-nf-call-ip6tables net.ipv4.ip_forward
 
 # Update Firewall
@@ -52,7 +54,6 @@ sudo firewall-cmd --reload
 sudo setenforce 0
 sudo sed -i 's/^SELINUX=enforcing$/SELINUX=permissive/' /etc/selinux/config
 
-
 # Install Container Runtime (CRI-O)
 OS=CentOS_8
 VERSION=1.26
@@ -60,7 +61,6 @@ rm /etc/yum.repos.d/devel*
 curl -L -o /etc/yum.repos.d/devel:kubic:libcontainers:stable.repo https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/$OS/devel:kubic:libcontainers:stable.repo
 curl -L -o /etc/yum.repos.d/devel:kubic:libcontainers:stable:cri-o:$VERSION.repo https://download.opensuse.org/repositories/devel:kubic:libcontainers:stable:cri-o:$VERSION/$OS/devel:kubic:libcontainers:stable:cri-o:$VERSION.repo
 yum -y install cri-o
-sudo systemctl enable --now cri-o
 sudo systemctl enable crio.service --now
 
 # Install Kube* (kubelet kubeadm kubectl
@@ -78,9 +78,7 @@ EOF
 # Set SELinux in permissive mode (effectively disabling it)
 sudo setenforce 0
 sudo sed -i 's/^SELINUX=enforcing$/SELINUX=permissive/' /etc/selinux/config
-
 sudo yum install -y kubelet kubeadm kubectl --disableexcludes=kubernetes
-
 sudo systemctl enable --now kubelet
 
 case `uname -n` in 
@@ -92,6 +90,12 @@ case `uname -n` in
   ;;
 esac
 
+## Add worker nodes - not sure how to automate this
+kubectl get events -w
+
+echo "Note:  Run the command at the end of the kubectl init command"
+
+sleep 300
 
 # Create Cluster Kubeadm
 # https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/create-cluster-kubeadm/

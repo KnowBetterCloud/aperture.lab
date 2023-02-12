@@ -45,9 +45,9 @@ done
 sudo dnf -y install httpd php
 cd /var/www/
 sudo mv html html.orig
-sudo git clone https://github.com/KnowBetterCloud/blackmesa.git
-sudo ln -s blackmesa html
-sudo chown -R jradtke:jradtke blackmesa
+sudo git clone https://github.com/KnowBetterCloud/aperature.lab.git
+sudo ln -s aperture.lab html
+sudo chown -R jradtke:jradtke aperture.lab 
 sudo systemctl enable httpd --now
 firewall-cmd --permanent --zone=libvirt --add-port=80/tcp
 firewall-cmd --permanent --zone=libvirt --add-service=http
@@ -81,7 +81,7 @@ Alias "/ISOS" "/var/www/ISOS"
   DirectoryIndex index.php index.html
 </Directory>
 EOF
-curl https://raw.githubusercontent.com/KnowBetterCloud/blackmesa/main/Files/index.php | sudo tee /var/www/ISOS/index.php 
+curl https://raw.githubusercontent.com/KnowBetterCloud/aperture.lab/main/Files/index.php | sudo tee /var/www/ISOS/index.php 
 
 sudo systemctl restart httpd
 
