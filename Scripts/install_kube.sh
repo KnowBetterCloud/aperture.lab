@@ -94,7 +94,7 @@ esac
 kubectl get events -w
 
 echo "Note:  Run the command at the end of the kubectl init command"
-
+echo "  kubeadm token create --print-join-command"
 sleep 300
 
 # Create Cluster Kubeadm
@@ -122,5 +122,15 @@ case `uname -n` in
     firewall-cmd --reload
   ;;
 esac
+
+
+case `uname -n` in 
+  blackmesa)
+    [ ! -d ${HOME}/.kube/ ] && mkdir ${HOME}/.kube/
+    scp root@control-plane-0:/etc/kubernetes/admin.conf $HOME/.kube/config
+    sudo chown $(id -u):$(id -g) $HOME/.kube/config
+  ;;
+esac
+
 
 
