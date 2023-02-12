@@ -11,5 +11,5 @@ echo "mansible ALL=(ALL)	NOPASSWD: ALL" | sudo tee /etc/sudoers.d/mansible
 
 # If I am going to add a reboot at this point, I need to figure out how to make it NOT reboot if 
 #   this host is currently being kickstarted
-#sudo yum -y update 
+sudo yum -y update 
 
