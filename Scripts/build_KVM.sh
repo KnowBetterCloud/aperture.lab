@@ -149,7 +149,7 @@ virt-install --noautoconsole --name ${GUESTNAME} --hvm --connect qemu:///system 
   --disk /var/lib/libvirt/images/${GUESTNAME}/${GUESTNAME}-0.qcow2,device=disk,bus=virtio,format=qcow2 \
   --disk /var/lib/libvirt/images/${GUESTNAME}/${GUESTNAME}-1.qcow2,device=disk,bus=virtio,format=qcow2 \
   --disk /var/lib/libvirt/images/${GUESTNAME}/${GUESTNAME}-2.qcow2,device=disk,bus=virtio,format=qcow2 \
-  --os-type=linux --os-variant=${OSVARIANT} ${BOOTOPTIONS} \
+  --os-variant=${OSVARIANT} ${BOOTOPTIONS} \
   --location="http://${WEBSERVER}/OS/${OSDIR}" \
   -x "ks=http://${WEBSERVER}/Kickstart/${GUESTNAME}.ks $ENABLE_FIPS"
     echo "Completed: `date`"
@@ -161,7 +161,7 @@ virt-install --noautoconsole --name ${GUESTNAME} --hvm --connect qemu:///system 
   --network=bridge:${BRIDGE} --vcpus=${NUMCPUS} --ram=${MEM} \
   --disk /var/lib/libvirt/images/${GUESTNAME}/${GUESTNAME}-0.qcow2,device=disk,bus=virtio,format=qcow2 \
   --disk /var/lib/libvirt/images/${GUESTNAME}/${GUESTNAME}-1.qcow2,device=disk,bus=virtio,format=qcow2 \
-  --os-type=linux --os-variant=${OSVARIANT} ${BOOTOPTIONS} \
+  --os-variant=${OSVARIANT} ${BOOTOPTIONS} \
   --location="http://${WEBSERVER}/OS/${OSDIR}" \
   -x "ks=http://${WEBSERVER}/Kickstart/${GUESTNAME}.ks $ENABLE_FIPS"
     echo "Completed: `date`"
@@ -172,7 +172,7 @@ virt-install --noautoconsole --name ${GUESTNAME} --hvm --connect qemu:///system 
   --description "${GUESTNAME}" --virt-type=kvm \
   --network=bridge:${BRIDGE} --vcpus=${NUMCPUS} --ram=${MEM} \
   --disk /var/lib/libvirt/images/${GUESTNAME}/${GUESTNAME}-0.qcow2,device=disk,bus=virtio,format=qcow2 \
-  --os-type=linux --os-variant=${OSVARIANT} ${BOOTOPTIONS} \
+  --os-variant=${OSVARIANT} ${BOOTOPTIONS} \
   --location="http://${WEBSERVER}/OS/${OSDIR}" \
   -x "ks=http://${WEBSERVER}/Kickstart/${GUESTNAME}.ks $ENABLE_FIPS"
     echo "Completed: `date`"
