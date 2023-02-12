@@ -1,0 +1,18 @@
+# THESE VALUES ARE READ IN BY:  
+#   build_kvm.sh
+#   post_install.sh
+# 
+#NAME:HYPERVISOR:RELEASE:NUMCPU:MEM:HDD0:HDD1:HDD2:releasetype:releasever:BIOS-UEFI:Satellite:DISCONNECTED:PURPOSE:INSTALL:FIPS
+#   1:         2:      3:     4   5:   6:   7:   8:          9:        10:       11:       12:          13:     14:     15   16
+# BIOS-UEFI: BIOS|UEFI (select one)
+# PURPOSE:   RHV|RHHI|RHC
+# INSTALL:   RHEL|RHVH|RHELH (unused)
+# 
+# ==  HYPERVISORS (for reference) ============================================================
+blackmesa:x:f37:x:x:x:x:0:server:7.8:UEFI:1:x:x:x:1
+
+#RH7-POC-PRD01:apoc:EL7:2:1536:40:0:0:server:7.7:BIOS:1:0:x:x:0
+control-plane-0:blackmesa:EL8:4:6:50:100:0:server:8.7:UEFI:x:x:x:x:x
+worker-node-0:blackmesa:EL8:4:8:50:100:0:server:8.7:UEFI:x:x:x:x:x
+worker-node-1:blackmesa:EL8:4:8:50:100:0:server:8.7:UEFI:x:x:x:x:x
+test-node-1:blackmesa:EL8:4:6:50:100:0:server:8.7:UEFI:x:x:x:x:x
