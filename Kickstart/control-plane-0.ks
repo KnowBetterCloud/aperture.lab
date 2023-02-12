@@ -56,20 +56,21 @@ pwpolicy user --minlen=6 --minquality=1 --notstrict --nochanges --emptyok
 pwpolicy luks --minlen=6 --minquality=1 --notstrict --nochanges --notempty
 %end
 
-
 %post --erroronfail --log=/root/ks-post.lo
+echo "Note: configure SSH for root user"
 echo "" | ssh-keygen -trsa -b2048 -N ''
 curl -o /root/.ssh/authorized_keys http://192.168.124.1/Files/authorized_keys
 chmod 0600 /root/.ssh/authorized_keys
 
+echo "Note: configure SSH for mansible user"
 su - mansible -c "echo | ssh-keygen -trsa -b2048 -N '' "
 curl -o /home/mansible/.ssh/authorized_keys http://192.168.124.1/Files/authorized_keys
 chown mansible:mansible /home/mansible/.ssh/authorized_keys
 restorecon -RF /home/mansible/.ssh/
 chmod 0600 /home/mansible/.ssh/authorized_keys
 
-curl -o /root/post_install.sh http://192.168.124.1/Scripts/post_install.sh
-chmod 0754 /root/post_install.sh
-/root/post_install.sh
+#curl -o /root/post_install.sh http://192.168.124.1/Scripts/post_install.sh
+#chmod 0754 /root/post_install.sh
+#/root/post_install.sh
 %end
 
