@@ -3,9 +3,10 @@
 text
 skipx
 
-reboot
 selinux --enforcing
 firewall --enabled
+eula --agreed
+reboot
 
 #############################
 # System Setup
@@ -19,7 +20,6 @@ timezone America/New_York --isUtc
 rootpw --iscrypted $6$s//2LyziMwEoMwlE$RzK4L/BKXP9L6mmoHKlhm9b17l8HFoUexAOY7PAwjn8xuNvvwvra2AxLEoqGokPe0tBkuvba0hOKzZHxtQnSm.
 user --groups=wheel --name=mansible --password=$6$TxwtDnLcfs08tYju$ZSRJXWX0P4eA3uxSH.E6rn.pbUyDFrL6ospFPOC.lfoP98r98eDwe4UH5CSrLGtFoA1Qi/pstB/UZNljDmSfR0 --iscrypted --gecos="My Aansible"
 syspurpose --role="Red Hat Enterprise Linux Server" --sla="Standard" --usage="Production"
-eula --agreed
 
 #############################
 # Software Management 
@@ -69,8 +69,8 @@ chown mansible:mansible /home/mansible/.ssh/authorized_keys
 restorecon -RF /home/mansible/.ssh/
 chmod 0600 /home/mansible/.ssh/authorized_keys
 
-#curl -o /root/post_install.sh http://192.168.124.1/Scripts/post_install.sh
-#chmod 0754 /root/post_install.sh
-#/root/post_install.sh
+curl -o /root/post_install.sh http://192.168.124.1/Scripts/post_install.sh
+chmod 0754 /root/post_install.sh
+/root/post_install.sh
 %end
 
