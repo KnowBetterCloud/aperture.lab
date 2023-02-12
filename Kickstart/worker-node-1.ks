@@ -35,8 +35,8 @@ kexec-tools
 
 #############################
 # Network information
-network  --bootproto=static --device=enp1s0 --gateway=192.168.124.1 --ip=192.168.124.110 --nameserver=192.168.124.1,8.8.8.8 --netmask=255.255.255.0 --ipv6=auto --activate
-network  --hostname=worker-node-0.aperture.lab
+network  --bootproto=static --device=enp1s0 --gateway=192.168.124.1 --ip=192.168.124.111 --nameserver=192.168.124.1,8.8.8.8 --netmask=255.255.255.0 --ipv6=auto --activate
+network  --hostname=worker-node-1.aperture.lab
 
 #############################
 # Disk Management
