@@ -1,5 +1,7 @@
-# blackmesa
-Black Mesa is a repo for creating a Kubernetes environment on my laptop.
+# Aperture.lab 
+Aperture Laboratories (aperture.lab) is a repo for creating a Kubernetes environment on my laptop.
+
+I'm a huge fan of  [Half-Life](https://en.wikipedia.org/wiki/Half-Life_(series))  and [Blackmesa](https://en.wikipedia.org/wiki/Black_Mesa_(video_game))
 
 Status: WIP
 
