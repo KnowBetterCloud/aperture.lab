@@ -133,4 +133,6 @@ case `uname -n` in
 esac
 
 
+## Working on Certificates
+# https://kubernetes.io/docs/tasks/administer-cluster/kubeadm/kubeadm-certs/#kubelet-serving-certs
 
